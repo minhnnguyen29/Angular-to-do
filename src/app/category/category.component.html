@@ -1,2 +1,13 @@
-<p>Category Component</p>
+<p>Category Component that lists all tasks</p>
+<ul class="categorisedTasks">
+    <li *ngFor="let eachtask of categorisedTasks">
+        Task {{ eachtask.taskID }}: {{ eachtask.taskField }}
+
+
+</li>
+</ul>
+<button mat-fab color ="accent" aria-label="Example icon button with a plus on icon" (click)="whatNext()">
+    <mat-icon>plus_one</mat-icon>
+</button>
+<br><br>
 <app-task></app-task>

@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { Task } from './../task';//import task interface
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
+
 export class TaskComponent implements OnInit {
 
-  task: Task = {
-    taskID: 1, 
-    taskField: '',
-    taskCate: 'undefined',
-    deadline: new Date()
-  };
+  @Input ('task') Task: {
+    taskID: number, 
+    taskField: string, 
+    taskCate?: string, 
+    deadline?: Date 
+  } 
+  
+  mockTask = {
+    taskID: 0, 
+    taskField: 'Mock something'
+  }
   constructor() { }
 
   ngOnInit(): void {
@@ -24,14 +29,9 @@ export class TaskComponent implements OnInit {
   }
 
   completeTask(){
-    console.log(`This ${this.task.taskField} has been completed`);
+    console.log(`This ${this.mockTask.taskField} has been completed`);
   }
   
-  createTask(){
-    console.log(`This ${this.task.taskField} has been created `);
-  }
-  noDate(){
-    console.log('This task has no deadline'); 
-  }
+  
 
 }

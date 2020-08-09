@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
 import { CategoryComponent } from './category/category.component';
 import { TaskComponent } from './task/task.component';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { TaskComponent } from './task/task.component';
     DashboardComponent,
     MenuComponent,
     CategoryComponent, 
-    TaskComponent,
+    TaskComponent, NewTaskComponent,
   ],
 
   imports: [
