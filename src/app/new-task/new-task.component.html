@@ -23,4 +23,4 @@
     </mat-form-field>
 </div>
 
-<button mat-raised-button (click)="onAddTask()">Add Task</button>
+<button mat-raised-button [disabled]="newTask.taskField === ''" (click)="onAddTask()">Add Task</button>

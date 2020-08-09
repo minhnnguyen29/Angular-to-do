@@ -10,22 +10,26 @@ export class NewTaskComponent implements OnInit {
   @Input() newTaskID: number ; 
   newTask: Task = {
     taskID: this.newTaskID, 
-    taskField: 'Hi', 
-    deadline: new Date()
+    taskField: '', 
+    deadline: new Date(), 
+    taskStatus: 'To-Do'
   }; 
 
   @Output() addedTask = new EventEmitter<{
                                 taskID: number, 
                                 taskField: string, 
                                 taskCate: string,
-                                deadline: Date
+                                deadline: Date, 
+                                taskStatus: string
   }>(); 
 
   onAddTask(){
     this.addedTask.emit({taskID : this.newTaskID,
                         taskField: this.newTask.taskField, 
                         taskCate: this.newTask.taskCate, 
-                        deadline: this.newTask.deadline});//emit the new event of this component
+                        deadline: this.newTask.deadline,
+                        taskStatus: this.newTask.taskStatus
+                        });//emit the new event of this component
     console.log(this.newTask);
   }
 

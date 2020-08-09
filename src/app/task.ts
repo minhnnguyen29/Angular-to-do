@@ -3,4 +3,5 @@ export interface Task {
     taskField: string;
     taskCate?: string;
     deadline?: Date;
+    taskStatus: string;
 }

@@ -11,9 +11,13 @@ import { Task } from './../task';
 export class CategoryComponent implements OnInit {
 
   categorisedTasks: Task[] = [
-    {taskID: 1, taskField: 'Clean'},
-    {taskID: 2, taskField: 'Wipe'}
+    {taskID: 1, taskField: 'Clean', taskStatus: 'To-Do'},
+    {taskID: 2, taskField: 'Wipe', taskStatus: 'To-Do'}
   ]
+
+  completedTasks: Task[] = [
+
+  ]; 
   newID: number = 1; 
   constructor() { }
   ngOnInit(): void {
@@ -31,7 +35,8 @@ export class CategoryComponent implements OnInit {
       taskID: taskData.taskID, 
       taskField: taskData.taskField, 
       deadline: taskData.deadline, 
-      taskCate: taskData.taskCate
+      taskCate: taskData.taskCate, 
+      taskStatus: taskData.taskStatus
     })
     console.log(taskData);
   }
@@ -50,6 +55,16 @@ export class CategoryComponent implements OnInit {
   }
 
   onCompletedTask(TaskData: Task){
+    console.log(TaskData);
+    this.completedTasks.push({
+      taskID: TaskData.taskID, 
+      taskField: TaskData.taskField, 
+      taskCate: TaskData.taskCate,
+      deadline: TaskData.deadline, 
+      taskStatus: 'Done'
+    });
+    console.log(this.completedTasks); 
+
     this.onDeletedTask(TaskData);//delete it from the array 
   }
 

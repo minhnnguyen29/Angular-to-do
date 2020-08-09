@@ -17,7 +17,6 @@ import { MenuComponent } from './menu/menu.component';
 import { CategoryComponent } from './category/category.component';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
-import { DoneComponent } from './done/done.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,7 @@ import { DoneComponent } from './done/done.component';
     DashboardComponent,
     MenuComponent,
     CategoryComponent, 
-    TaskComponent, NewTaskComponent, DoneComponent,
-  ],
+    TaskComponent, NewTaskComponent,   ],
 
   imports: [
     BrowserModule,

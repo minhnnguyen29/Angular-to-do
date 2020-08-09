@@ -11,16 +11,25 @@ export class TaskComponent implements OnInit {
 
   @Input() mockTask: Task = {
     taskID: 0, 
-    taskField: 'Mock something'
+    taskField: '', 
+    taskStatus: 'To-Do'
   }
 
   @Output() deletedTask = new EventEmitter<{
       taskID: number, 
       taskField: string, 
       taskCate: string, 
-      deadline: Date
+      deadline: Date, 
+      taskStatus: string
   }>();
-
+  
+  @Output() completedTask = new EventEmitter<{
+      taskID: number, 
+      taskField: string, 
+      taskCate: string, 
+      deadline: Date,
+      taskStatus: string
+  }>();
   constructor() { }
 
   ngOnInit(): void {
@@ -31,16 +40,19 @@ export class TaskComponent implements OnInit {
         taskID: this.mockTask.taskID, 
         taskField: this.mockTask.taskField, 
         taskCate: this.mockTask.taskCate, 
-        deadline: this.mockTask.deadline 
+        deadline: this.mockTask.deadline, 
+        taskStatus: this.mockTask.taskStatus
     });
   }
 
   onCompleteTask(){
-    this.deletedTask.emit({
+    this.completedTask.emit({
         taskID: this.mockTask.taskID, 
         taskField: this.mockTask.taskField, 
         taskCate: this.mockTask.taskCate, 
-        deadline: this.mockTask.deadline 
+        deadline: this.mockTask.deadline, 
+        taskStatus: this.mockTask.taskStatus
+
     });
   }
   

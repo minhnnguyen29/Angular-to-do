@@ -1,9 +1,16 @@
 <h3>Category Component that lists all tasks</h3>
 <div class="categorisedTasks">
     <div *ngFor="let eachtask of categorisedTasks">
-        <app-task [mockTask]="eachtask" (deletedTask)="onDeletedTask($event)"></app-task>
+        <app-task [mockTask]="eachtask" (deletedTask)="onDeletedTask($event)" (completedTask)="onCompletedTask($event)"></app-task>
+    </div>
+
+    <h3 *ngIf="completedTasks">Completed Tasks</h3>
+    <div *ngFor="let eachctask of completedTasks">
+        <app-task [mockTask]="eachctask"></app-task>
     </div>
 </div>
+
+<br>
 <button mat-fab color ="accent" aria-label="Example icon button with a plus on icon" (click)="getNewID()">
     <mat-icon>plus_one</mat-icon>
 </button>
@@ -11,4 +18,3 @@
 
 <app-new-task [newTaskID]="newID" (addedTask)="onAddedTask($event)"></app-new-task>
 <br>
-<app-done></app-done>

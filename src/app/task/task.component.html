@@ -4,7 +4,7 @@
 
     </button>
 
-    <button mat-mini-fab color ="warn" (click)="onDeleteTask()">x</button>
+    <button mat-mini-fab color ="warn" [ngClass]="{'doneTask': mockTask.taskStatus==='To-Do'}" (click)="onDeleteTask()" >x</button>
 </div>
 
    
