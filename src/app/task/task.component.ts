@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Task } from './../task';
 
 @Component({
   selector: 'app-task',
@@ -8,28 +9,39 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class TaskComponent implements OnInit {
 
-  @Input ('task') Task: {
-    taskID: number, 
-    taskField: string, 
-    taskCate?: string, 
-    deadline?: Date 
-  } 
-  
-  mockTask = {
+  @Input() mockTask: Task = {
     taskID: 0, 
     taskField: 'Mock something'
   }
+
+  @Output() deletedTask = new EventEmitter<{
+      taskID: number, 
+      taskField: string, 
+      taskCate: string, 
+      deadline: Date
+  }>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  deleteTask(){
-    console.log("Delete this task!");
+  onDeleteTask(){
+    this.deletedTask.emit({
+        taskID: this.mockTask.taskID, 
+        taskField: this.mockTask.taskField, 
+        taskCate: this.mockTask.taskCate, 
+        deadline: this.mockTask.deadline 
+    });
   }
 
-  completeTask(){
-    console.log(`This ${this.mockTask.taskField} has been completed`);
+  onCompleteTask(){
+    this.deletedTask.emit({
+        taskID: this.mockTask.taskID, 
+        taskField: this.mockTask.taskField, 
+        taskCate: this.mockTask.taskCate, 
+        deadline: this.mockTask.deadline 
+    });
   }
   
   

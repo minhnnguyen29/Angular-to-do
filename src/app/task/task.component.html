@@ -1,10 +1,10 @@
-<div >
-    <button mat-raised-button color="accent" (click)="completeTask()" >
-        Task {{ mockTask.taskID }}: {{ mockTask.taskField }}
+<div *ngIf=mockTask>
+    <button mat-raised-button color="accent" (click)="onCompleteTask()" >
+        Task {{ mockTask.taskID }}: {{ mockTask.taskField }} done by {{ mockTask.deadline}} !
 
     </button>
 
-    <button mat-mini-fab color ="warn" (click)="deleteTask()">x</button>
+    <button mat-mini-fab color ="warn" (click)="onDeleteTask()">x</button>
 </div>
 
    
