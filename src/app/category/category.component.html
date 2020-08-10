@@ -10,11 +10,14 @@
     </div>
 </div>
 
-<br>
-<button mat-fab color ="accent" aria-label="Example icon button with a plus on icon" (click)="getNewID()">
-    <mat-icon>plus_one</mat-icon>
-</button>
-<br><br>
 
-<app-new-task [newTaskID]="newID" (addedTask)="onAddedTask($event)"></app-new-task>
-<br>
+<nav>
+    <a routerLink="/create-task">
+        <button mat-fab color ="accent" aria-label="Example icon button with a plus on icon" (click)="getNewID()">
+           <mat-icon>plus_one</mat-icon>
+        </button>
+    </a>
+</nav>
+<router-outlet></router-outlet>
+
+ <app-new-task [newTaskID]="newID" (addedTask)="onAddedTask($event)"></app-new-task>

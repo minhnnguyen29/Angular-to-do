@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +27,9 @@ import { NewTaskComponent } from './new-task/new-task.component';
     DashboardComponent,
     MenuComponent,
     CategoryComponent, 
-    TaskComponent, NewTaskComponent,   ],
+    TaskComponent, 
+    NewTaskComponent  
+  ],
 
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { NewTaskComponent } from './new-task/new-task.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
+    AppRoutingModule,
     MatButtonModule, 
     MatIconModule, 
     MatFormFieldModule,
