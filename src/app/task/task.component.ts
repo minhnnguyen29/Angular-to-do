@@ -1,3 +1,4 @@
+import { LoggingService } from './../logging.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from './../task';
 
@@ -30,7 +31,7 @@ export class TaskComponent implements OnInit {
       deadline: Date,
       taskStatus: string
   }>();
-  constructor() { }
+  constructor(private LoggingService: LoggingService) { }
 
   ngOnInit(): void {
   }

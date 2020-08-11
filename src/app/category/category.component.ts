@@ -1,5 +1,8 @@
+import { TaskService } from './../task.service';
 import { Component, OnInit } from '@angular/core';
 import { Task } from './../task'; 
+
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -18,8 +21,16 @@ export class CategoryComponent implements OnInit {
   completedTasks: Task[] = [
 
   ]; 
+
   newID: number = 1; 
-  constructor() { }
+
+  newTask: Task; 
+
+
+
+  constructor(
+              private router: Router, 
+              private route: ActivatedRoute) { }
   ngOnInit(): void {
 
   }
@@ -28,17 +39,26 @@ export class CategoryComponent implements OnInit {
     if(this.categorisedTasks.length > 0){
       this.newID = this.categorisedTasks[this.categorisedTasks.length - 1].taskID + 1;
     }
+    this.navigateToNewTask();//navigate with newID
+    
   }
 
-  onAddedTask(taskData: Task){
+  navigateToNewTask(){
+    this.router.navigate(['/create-task'], {queryParams: {id: this.newID}});//pass router parameter 
+  }
+
+  onAddedTask(){
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+    });
+    
     this.categorisedTasks.push({
-      taskID: taskData.taskID, 
-      taskField: taskData.taskField, 
-      deadline: taskData.deadline, 
-      taskCate: taskData.taskCate, 
-      taskStatus: taskData.taskStatus
+      taskID: this.newTask.taskID, 
+      taskField: this.newTask.taskField, 
+      deadline: this.newTask.deadline, 
+      taskCate: this.newTask.taskCate, 
+      taskStatus: this.newTask.taskStatus
     })
-    console.log(taskData);
   }
 
   onDeletedTask(TaskData: Task){
