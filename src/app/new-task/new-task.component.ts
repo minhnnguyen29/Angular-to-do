@@ -16,6 +16,7 @@ export class NewTaskComponent implements OnInit {
   newTask: Task = {
     taskID: this.newTaskID, 
     taskField: '', 
+    taskCate: '',
     deadline: new Date(), 
     taskStatus: 'To-Do'
   }; 
@@ -34,38 +35,37 @@ export class NewTaskComponent implements OnInit {
     //this.newTaskID = this.route.snapshot.params['id'];
     // Before ng 6 
     this.route.queryParamMap.subscribe(params => {
-      this.newTaskID = params['params']['id'];//its supposed to be params['id']
+      this.newTask.taskID = params['params']['id'];//its supposed to be params['id']
     });
 
-    /* Event Emitter 
-    this.addedTask.emit({taskID : this.newTaskID,
-                        taskField: this.newTask.taskField, 
-                        taskCate: this.newTask.taskCate, 
-                        deadline: this.newTask.deadline,
-                        taskStatus: this.newTask.taskStatus
-                        });//emit the new event of this component
-    */
+    //evenEmitter using Service 
+    this.taskService.onEmitNewTask(this.newTask);//emit the new event of this component
 
-    this.navigateToCategories();
     const logAdded = new LoggingService();
-    logAdded.logAddedTask(this.newTaskID, this.newTask.taskField);
+    logAdded.logAddedTask(this.newTask.taskID, this.newTask.taskField);
   }
 
+  /*
   navigateToCategories(){
+    
+    This will work but it needs to call a function: Event Emitter ==> doesn't do anything
     this.router.navigate(['/categories'], 
       {queryParams:{ taskID : this.newTaskID,
         taskField: this.newTask.taskField, 
         taskCate: this.newTask.taskCate, 
         deadline: this.newTask.deadline,
         taskStatus: this.newTask.taskStatus
+
     }});
   }
+    */
 
   noDate(){
     console.log('This task has no deadline'); 
   }
   constructor(private route: ActivatedRoute, 
-              private router: Router
+              private router: Router, 
+              private taskService: TaskService
     ) { }
 
   ngOnInit(): void {

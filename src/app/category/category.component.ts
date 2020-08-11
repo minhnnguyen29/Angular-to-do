@@ -30,7 +30,12 @@ export class CategoryComponent implements OnInit {
 
   constructor(
               private router: Router, 
-              private route: ActivatedRoute) { }
+              private taskService: TaskService
+              ) {
+                this.onAddedTask();
+              }
+
+
   ngOnInit(): void {
 
   }
@@ -48,17 +53,20 @@ export class CategoryComponent implements OnInit {
   }
 
   onAddedTask(){
-    this.route.queryParams.subscribe(params => {
-      console.log(params);
+    this.taskService.changeEmitted.subscribe(task => {
+      console.log(task);
+      this.categorisedTasks.push({
+      taskID: task.taskID, 
+      taskField: task.taskField, 
+      deadline: task.deadline, 
+      taskCate: task.taskCate, 
+      taskStatus: task.taskStatus
+      });
+      
+      console.log(this.categorisedTasks);
     });
-    
-    this.categorisedTasks.push({
-      taskID: this.newTask.taskID, 
-      taskField: this.newTask.taskField, 
-      deadline: this.newTask.deadline, 
-      taskCate: this.newTask.taskCate, 
-      taskStatus: this.newTask.taskStatus
-    })
+    console.log(this.categorisedTasks);
+
   }
 
   onDeletedTask(TaskData: Task){

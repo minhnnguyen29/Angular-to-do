@@ -1,15 +1,23 @@
+
 import { Injectable, EventEmitter } from '@angular/core';
+import { Subject, Observable } from 'rxjs'; 
+import { Task } from './task';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  idProvider = new EventEmitter(); //provide id for each task 
   constructor() { }
 
-  getIncrementedID(id: number){
-    return id;
+  private emitNewTask = new Subject<Task>(); 
+
+  changeEmitted = this.emitNewTask.asObservable(); //Observable String streams 
+
+  onEmitNewTask(newTask: Task){
+    this.emitNewTask.next(newTask);
   }
+
+
 
 }
