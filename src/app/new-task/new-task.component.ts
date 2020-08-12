@@ -1,7 +1,7 @@
 import { TaskService } from './../task.service';
 import { LoggingService } from './../logging.service';
 import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Task } from './../task';
 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./new-task.component.css'] 
 })
 export class NewTaskComponent implements OnInit {
-  @Input() newTaskID: number ; 
+  newTaskID: number ; 
   newTask: Task = {
     taskID: this.newTaskID, 
     taskField: '', 

@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { TaskService } from './../task.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Task } from './../task'; 
 
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,6 +19,11 @@ export class CategoryComponent implements OnInit {
     {taskID: 2, taskField: 'Wipe', taskStatus: 'To-Do'}
   ]
 
+  CategorisedTasks$ = new Observable<Task[]>();
+
+
+  @Output() noTasks = new EventEmitter<number>();
+
   completedTasks: Task[] = [
 
   ]; 
@@ -32,12 +38,12 @@ export class CategoryComponent implements OnInit {
               private router: Router, 
               private taskService: TaskService
               ) {
-                this.onAddedTask();
-              }
+                              }
 
 
   ngOnInit(): void {
-
+    this.onAddedTask();
+    console.log('aab');
   }
 
   getNewID() {
@@ -65,8 +71,15 @@ export class CategoryComponent implements OnInit {
       
       console.log(this.categorisedTasks);
     });
-    console.log(this.categorisedTasks);
+    //console.log(this.categorisedTasks);
 
+    //report new number of tasks 
+    this.updateTotal();
+
+  }
+
+  updateTotal(){
+    this.noTasks.emit(this.categorisedTasks.length); 
   }
 
   onDeletedTask(TaskData: Task){
