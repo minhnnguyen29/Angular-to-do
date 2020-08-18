@@ -14,12 +14,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class CategoryComponent implements OnInit {
 
-  categorisedTasks: Task[] = [
-    {taskID: 1, taskField: 'Clean', taskStatus: 'To-Do'},
-    {taskID: 2, taskField: 'Wipe', taskStatus: 'To-Do'}
-  ]
+  
 
-  CategorisedTasks$ = new Observable<Task[]>();
+  categorisedTasks: Task[];
 
 
   @Output() noTasks = new EventEmitter<number>();
@@ -42,8 +39,7 @@ export class CategoryComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.onAddedTask();
-    console.log('aab');
+    this.categorisedTasks = this.taskService.getTasks();//get all tasks from taskService 
   }
 
   getNewID() {
@@ -58,6 +54,7 @@ export class CategoryComponent implements OnInit {
     this.router.navigate(['/create-task'], {queryParams: {id: this.newID}});//pass router parameter 
   }
 
+  /*
   onAddedTask(){
     this.taskService.changeEmitted.subscribe(task => {
       console.log(task);
@@ -72,15 +69,9 @@ export class CategoryComponent implements OnInit {
       console.log(this.categorisedTasks);
     });
     //console.log(this.categorisedTasks);
-
-    //report new number of tasks 
-    this.updateTotal();
-
   }
+  */
 
-  updateTotal(){
-    this.noTasks.emit(this.categorisedTasks.length); 
-  }
 
   onDeletedTask(TaskData: Task){
     let ids, index; 

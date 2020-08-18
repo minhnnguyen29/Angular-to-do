@@ -33,7 +33,7 @@ export class NewTaskComponent implements OnInit {
   onAddTask(){
     //retrieve ID from CategoryComponent
     //this.newTaskID = this.route.snapshot.params['id'];
-    // Before ng 6 
+    /* Before ng 6 
     this.route.queryParamMap.subscribe(params => {
       this.newTask.taskID = params['params']['id'];//its supposed to be params['id']
     });
@@ -41,8 +41,8 @@ export class NewTaskComponent implements OnInit {
     //evenEmitter using Service 
     this.taskService.onEmitNewTask(this.newTask);//emit the new event of this component
 
-    const logAdded = new LoggingService();
-    logAdded.logAddedTask(this.newTask.taskID, this.newTask.taskField);
+  */
+    this.taskService.newTask.emit(this.newTask);//pass this newTask into taskService to add to array
   }
 
   /*
